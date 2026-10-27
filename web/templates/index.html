@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Simples</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <h1>Calculadora Simples</h1>
+      <p>Digite os valores e escolha a operação</p>
+    </div>
+
+    <div class="campos">
+      <div class="campo">
+        <label for="num-a">Primeiro</label>
+        <input id="num-a" type="text" placeholder="0" />
+      </div>
+      <div class="campo">
+        <label for="num-b">Segundo</label>
+        <input id="num-b" type="text" placeholder="0" />
+      </div>
+    </div>
+
+    <p class="ops-label">Operação</p>
+    <div class="ops">
+      <button class="op-btn" data-op="soma">
+        <span class="icone">+</span> Soma
+      </button>
+      <button class="op-btn" data-op="subtracao">
+        <span class="icone">−</span> Subtração
+      </button>
+      <button class="op-btn" data-op="multiplicacao">
+        <span class="icone">×</span> Multiplicação
+      </button>
+      <button class="op-btn" data-op="divisao">
+        <span class="icone">÷</span> Divisão
+      </button>
+    </div>
+
+    <button id="btn-calcular">Calcular</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f0f1a;
+  --card: #1a1a2e;
+  --card-border: rgba(255, 255, 255, 0.07);
+  --input-bg: #0f0f1a;
+  --input-border: rgba(255, 255, 255, 0.1);
+  --input-focus: #6c63ff;
+  --text-primary: #f0f0f5;
+  --text-muted: #7a7a9d;
+  --op-soma: #3b82f6;
+  --op-sub: #f43f5e;
+  --op-mul: #f59e0b;
+  --op-div: #10b981;
+  --btn-calcular: linear-gradient(135deg, #6c63ff, #3b82f6);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-card: 0 25px 60px rgba(0, 0, 0, 0.5);
+  --transition: .2s ease;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(108, 99, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.10) 0%, transparent 50%);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--text-primary);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 2.2rem 2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Cabeçalho */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -.5px;
+}
+
+.header p {
+  font-size: .8rem;
+  color: var(--text-muted);
+  margin-top: .3rem;
+}
+
+/* Inputs */
+.campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .8rem;
+  margin-bottom: 1.4rem;
+}
+
+.campo label {
+  display: block;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: .4rem;
+}
+
+.campo input {
+  width: 100%;
+  padding: .7rem 1rem;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.campo input::placeholder {
+  color: #3a3a5c;
+}
+
+.campo input:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, .18);
+}
+
+/* Operações */
+.ops-label {
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: .6rem;
+}
+
+.ops {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin-bottom: 1.4rem;
+}
+
+.op-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: .75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: .9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition),
+              color var(--transition), transform var(--transition);
+}
+
+.op-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.op-btn .icone {
+  font-size: 1rem;
+}
+
+.op-btn[data-op="soma"].ativo        { background: rgba(59, 130, 246, .2);  border-color: var(--op-soma);  color: var(--op-soma); }
+.op-btn[data-op="subtracao"].ativo   { background: rgba(244, 63, 94, .2);   border-color: var(--op-sub);   color: var(--op-sub); }
+.op-btn[data-op="multiplicacao"].ativo { background: rgba(245, 158, 11, .2); border-color: var(--op-mul);  color: var(--op-mul); }
+.op-btn[data-op="divisao"].ativo     { background: rgba(16, 185, 129, .2);  border-color: var(--op-div);   color: var(--op-div); }
+
+/* Botão calcular */
+#btn-calcular {
+  width: 100%;
+  padding: .9rem;
+  background: var(--btn-calcular);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: .03em;
+  transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 20px rgba(108, 99, 255, .35);
+}
+
+#btn-calcular:hover {
+  opacity: .9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(108, 99, 255, .5);
+}
+
+#btn-calcular:active {
+  transform: translateY(0);
+}
+
+/* Resultado */
+#resultado {
+  display: none;
+  margin-top: 1.2rem;
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  animation: fadeUp .25s ease;
+}
+
+#resultado.sucesso {
+  background: rgba(16, 185, 129, .1);
+  border: 1px solid rgba(16, 185, 129, .25);
+}
+
+#resultado.sucesso .label-res {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #10b981;
+  margin-bottom: .3rem;
+}
+
+#resultado.sucesso .valor-res {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f0f0f5;
+  letter-spacing: -.5px;
+}
+
+#resultado.erro {
+  background: rgba(244, 63, 94, .1);
+  border: 1px solid rgba(244, 63, 94, .25);
+  color: #f87171;
+  font-size: .92rem;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
