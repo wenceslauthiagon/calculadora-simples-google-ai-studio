@@ -6,12 +6,22 @@ const SIMBOLOS = {
 };
 
 let opSelecionada = null;
+const labelA = document.getElementById("label-a");
+const labelB = document.getElementById("label-b");
 
 document.querySelectorAll(".op-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".op-btn").forEach(b => b.classList.remove("ativo"));
     btn.classList.add("ativo");
     opSelecionada = btn.dataset.op;
+
+    if (opSelecionada === "porcentagem") {
+      labelA.textContent = "Percentual (%)";
+      labelB.textContent = "Valor";
+    } else {
+      labelA.textContent = "Primeiro";
+      labelB.textContent = "Segundo";
+    }
   });
 });
 
@@ -33,7 +43,10 @@ document.getElementById("btn-calcular").addEventListener("click", async () => {
   if (dados.erro) {
     mostrar("erro", dados.erro);
   } else {
-    mostrar("sucesso", `${a} ${SIMBOLOS[opSelecionada]} ${b}`, dados.resultado);
+    const expressao = opSelecionada === "porcentagem"
+      ? `${a}% de ${b}`
+      : `${a} ${SIMBOLOS[opSelecionada]} ${b}`;
+    mostrar("sucesso", expressao, dados.resultado);
   }
 });
 

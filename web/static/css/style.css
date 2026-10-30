@@ -17,6 +17,8 @@
   --op-sub: #f43f5e;
   --op-mul: #f59e0b;
   --op-div: #10b981;
+  --op-por: #a855f7;
+  --op-por-bg: rgba(168, 85, 247, 0.2);
   --btn-calcular: linear-gradient(135deg, #6c63ff, #3b82f6);
   --radius-sm: 10px;
   --radius-md: 14px;
@@ -157,6 +159,11 @@ body {
 .op-btn[data-op="subtracao"].ativo   { background: rgba(244, 63, 94, .2);   border-color: var(--op-sub);   color: var(--op-sub); }
 .op-btn[data-op="multiplicacao"].ativo { background: rgba(245, 158, 11, .2); border-color: var(--op-mul);  color: var(--op-mul); }
 .op-btn[data-op="divisao"].ativo     { background: rgba(16, 185, 129, .2);  border-color: var(--op-div);   color: var(--op-div); }
+.op-btn[data-op="porcentagem"].ativo { background: var(--op-por-bg);         border-color: var(--op-por);   color: var(--op-por); }
+
+.op-btn-full {
+  grid-column: span 2;
+}
 
 /* Botão calcular */
 #btn-calcular {

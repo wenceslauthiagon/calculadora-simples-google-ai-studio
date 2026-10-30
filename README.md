@@ -8,7 +8,7 @@ Calculadora desenvolvida em **Python 3** com duas interfaces: linha de comando (
 
 ```
 calculadora-simples/
-├── calculadora.py          # lógica das quatro operações (compartilhada)
+├── calculadora.py          # lógica das operações e porcentagem (compartilhada)
 ├── test_calculadora.py     # testes automatizados
 ├── EXPLICACAO.md           # guia didático para iniciantes
 └── web/
@@ -26,7 +26,7 @@ calculadora-simples/
 
 ## ✨ Funcionalidades
 
-- ➕ Soma · ➖ Subtração · ✖️ Multiplicação · ➗ Divisão
+- ➕ Soma · ➖ Subtração · ✖️ Multiplicação · ➗ Divisão · 📊 Porcentagem ("X% de Y")
 - Aceita vírgula ou ponto como separador decimal (`1,5` ou `1.5`)
 - Trata entradas inválidas sem travar o programa
 - Trata divisão por zero com mensagem clara
@@ -56,13 +56,14 @@ Escolha uma operação:
   2. Subtração
   3. Multiplicação
   4. Divisão
-  5. Sair
+  5. Porcentagem
+  6. Sair
 
-Opção: 3
-  Primeiro número : 7
-  Segundo número  : 4
+Opção: 5
+  Percentual (%) : 15
+  Valor          : 200
 
-  Multiplicação: 7.0 → 4.0 = 28
+  Porcentagem: 15% de 200 = 30
 
 Opção: 4
   Primeiro número : 10
@@ -103,11 +104,12 @@ Executando testes...
   [OK] subtracao
   [OK] multiplicacao
   [OK] divisao
+  [OK] porcentagem
 
 Todos os testes passaram!
 ```
 
-Cenários cobertos: operações básicas, decimais, negativos e divisão por zero.
+Cenários cobertos: operações básicas, porcentagem, decimais, negativos e divisão por zero.
 
 ---
 
