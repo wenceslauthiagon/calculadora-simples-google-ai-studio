@@ -1,6 +1,6 @@
 # Testes simples para a calculadora (sem pytest, somente asserts)
 
-from calculadora import soma, subtracao, multiplicacao, divisao
+from calculadora import soma, subtracao, multiplicacao, divisao, porcentagem
 
 def testar_soma():
     assert soma(2, 3) == 5,           "soma(2, 3) deve ser 5"
@@ -31,10 +31,22 @@ def testar_divisao():
     assert divisao(0, 0) is None,           "divisao(0, 0) deve retornar None"
     print("  [OK] divisao")
 
+def testar_porcentagem():
+    import math
+    assert porcentagem(10, 200) == 20,                        "10% de 200 deve ser 20"
+    assert porcentagem(50, 80)  == 40,                        "50% de 80 deve ser 40"
+    assert porcentagem(0, 500)  == 0,                         "0% de qualquer valor deve ser 0"
+    assert porcentagem(100, 75) == 75,                        "100% de um valor deve ser o proprio valor"
+    assert math.isclose(porcentagem(12.5, 80), 10),           "12.5% de 80 deve ser 10"
+    assert porcentagem(-10, 200) == -20,                      "-10% de 200 deve ser -20"
+    assert porcentagem(10, -200) == -20,                      "10% de -200 deve ser -20"
+    print("  [OK] porcentagem")
+
 if __name__ == "__main__":
     print("Executando testes...\n")
     testar_soma()
     testar_subtracao()
     testar_multiplicacao()
     testar_divisao()
+    testar_porcentagem()
     print("\nTodos os testes passaram!")

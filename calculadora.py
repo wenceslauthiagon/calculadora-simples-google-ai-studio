@@ -1,4 +1,4 @@
-# Calculadora de linha de comando com as quatro operações básicas
+# Calculadora de linha de comando com as quatro operações básicas e porcentagem
 
 def soma(a, b):
     """Retorna a soma de dois números."""
@@ -18,12 +18,17 @@ def divisao(a, b):
         return None  # Divisão por zero não é permitida
     return a / b
 
+def porcentagem(percentual, valor):
+    """Retorna percentual% de valor (ex.: 15% de 200 = 30)."""
+    return valor * percentual / 100
+
 # Dicionário que mapeia a opção do menu para a função correspondente
 operacoes = {
     "1": ("Soma",           soma),
     "2": ("Subtração",      subtracao),
     "3": ("Multiplicação",  multiplicacao),
     "4": ("Divisão",        divisao),
+    "5": ("Porcentagem",    porcentagem),
 }
 
 def ler_numero(mensagem):
@@ -46,25 +51,29 @@ def main():
         print("\nEscolha uma operação:")
         for chave, (nome, _) in operacoes.items():
             print(f"  {chave}. {nome}")
-        print("  5. Sair")
+        print("  6. Sair")
 
         opcao = input("\nOpção: ").strip()
 
         # Verifica se o usuário quer sair
-        if opcao == "5":
+        if opcao == "6":
             print("Até logo!")
             break
 
         # Verifica se a opção é válida
         if opcao not in operacoes:
-            print("  [!] Opcao invalida. Digite um numero de 1 a 5.")
+            print("  [!] Opcao invalida. Digite um numero de 1 a 6.")
             continue
 
         nome_op, funcao = operacoes[opcao]
 
         # Lê os dois operandos
-        a = ler_numero("  Primeiro número : ")
-        b = ler_numero("  Segundo número  : ")
+        if opcao == "5":
+            a = ler_numero("  Percentual (%) : ")
+            b = ler_numero("  Valor          : ")
+        else:
+            a = ler_numero("  Primeiro número : ")
+            b = ler_numero("  Segundo número  : ")
 
         resultado = funcao(a, b)
 
@@ -73,10 +82,11 @@ def main():
             print("  [ERRO] Divisao por zero nao e permitida.")
         else:
             # Exibe inteiro quando não há parte decimal
+            simbolo = f"{a}% de {b}" if opcao == "5" else f"{a} → {b}"
             if resultado == int(resultado):
-                print(f"\n  {nome_op}: {a} → {b} = {int(resultado)}")
+                print(f"\n  {nome_op}: {simbolo} = {int(resultado)}")
             else:
-                print(f"\n  {nome_op}: {a} → {b} = {resultado:.6g}")
+                print(f"\n  {nome_op}: {simbolo} = {resultado:.6g}")
 
 if __name__ == "__main__":
     main()

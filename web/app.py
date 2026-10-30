@@ -3,7 +3,7 @@ import sys
 import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from calculadora import soma, subtracao, multiplicacao, divisao
+from calculadora import soma, subtracao, multiplicacao, divisao, porcentagem
 
 app = Flask(__name__)
 
@@ -12,6 +12,7 @@ OPERACOES = {
     "subtracao":     subtracao,
     "multiplicacao": multiplicacao,
     "divisao":       divisao,
+    "porcentagem":   porcentagem,
 }
 
 def parse_numero(valor):

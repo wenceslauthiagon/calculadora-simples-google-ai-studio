@@ -24,6 +24,9 @@ def divisao(a, b):
     if b == 0:
         return None
     return a / b
+
+def porcentagem(percentual, valor):
+    return valor * percentual / 100
 ```
 
 ### Condições (`if` / `else`)
@@ -40,7 +43,7 @@ Mantém o menu rodando até o usuário escolher sair. O `break` encerra o loop:
 ```python
 while True:
     opcao = input("Opção: ")
-    if opcao == "5":
+    if opcao == "6":
         break
 ```
 
@@ -52,6 +55,7 @@ operacoes = {
     "2": ("Subtração",     subtracao),
     "3": ("Multiplicação", multiplicacao),
     "4": ("Divisão",       divisao),
+    "5": ("Porcentagem",   porcentagem),
 }
 ```
 
@@ -90,8 +94,9 @@ Na versão web, o resultado volta do servidor em JSON e o JavaScript atualiza a 
 | 2 | Opção `2`, números `10` e `4,5` | `Subtração: 10.0 → 4.5 = 5.5` |
 | 3 | Opção `3`, números `-2` e `6` | `Multiplicação: -2.0 → 6.0 = -12` |
 | 4 | Opção `4`, números `7` e `0` | `[ERRO] Divisao por zero nao e permitida.` |
-| 5 | Opção `9` (inexistente) | `[!] Opcao invalida. Digite um numero de 1 a 5.` |
-| 6 | Número inválido: `abc` | `[!] Entrada invalida. Digite um numero (ex.: 3, -1.5 ou 2,7).` |
+| 5 | Opção `5`, percentual `15` e valor `200` | `Porcentagem: 15% de 200 = 30` |
+| 6 | Opção `9` (inexistente) | `[!] Opcao invalida. Digite um numero de 1 a 6.` |
+| 7 | Número inválido: `abc` | `[!] Entrada invalida. Digite um numero (ex.: 3, -1.5 ou 2,7).` |
 
 ---
 
@@ -103,8 +108,8 @@ Navegador                     Servidor Flask
 index.html  ←── renderiza ──  app.py  /
 script.js   ──── POST ──────► app.py  /calcular
                                └─ importa calculadora.py
-                               └─ chama soma / divisao / ...
-            ◄──── JSON ──────  retorna { "resultado": 42 }
+                               └─ chama soma / divisao / porcentagem / ...
+            ◄──── JSON ──────  retorna { "resultado": 30 }
 style.css   ←── estático ───  static/css/style.css
 ```
 
